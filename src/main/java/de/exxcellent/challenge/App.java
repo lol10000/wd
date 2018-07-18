@@ -1,15 +1,11 @@
 package de.exxcellent.challenge;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.io.File;
 import java.util.Scanner;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+import de.exxcellent.table.CSVReader;
+import de.exxcellent.table.Result;
+import de.exxcellent.table.TableAnalysis;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -20,61 +16,26 @@ import org.apache.commons.csv.CSVRecord;
 public final class App {
 
     public static void main(String... args) {
+    	
+    	System.out.println("weather table");	
+    	
+    	String path = new File("").getAbsolutePath().concat("//src//main//resources//de//exxcellent//challenge//weather.csv");
+    	
+    	String[][] table = CSVReader.readTable(path);
+    	Result r = TableAnalysis.determineSolution(table, "MxT", "MnT");
 
-        // Your preparation code …
-    	
-    	Scanner scan = new Scanner(System.in);
-    	
-    	System.out.println("Enter path of weather table");	
-    	String path = scan.next();
-    	
-    	Reader in = null;
-    	
-    	try {
-			in = new FileReader(path);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	Iterable<CSVRecord> records = null;
-    	
-    	try {
-			records = CSVFormat.EXCEL.parse(in);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	Iterator<CSVRecord> iterator = records.iterator();
-    	
-    	iterator.next();
-    	CSVRecord entry = iterator.next();
-    	
-    	String currentDay = entry.get(0);
-    	int currentDifference = Math.abs(Integer.valueOf(entry.get(1)) - Integer.valueOf(entry.get(2))); 
-    	
-    	while (iterator.hasNext()) {
-    		
-    		entry = iterator.next();	
-    		int value = Math.abs(Integer.valueOf(entry.get(1)) - Integer.valueOf(entry.get(2)));
-    		
-    		if (value > currentDifference) {
-    			currentDay = entry.get(0);
-    			currentDifference = value;
-    		}
-    		
-    	}
-    	
-    	System.out.println("day: " + currentDay + ", difference: " + currentDifference);
-    	
-    	/*
-    	String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
-        String teamWithSmallesGoalSpread = "A good team"; // Your goal analysis function call …
+    	String dayWithSmallestTempSpread = r.getName();     // Your day analysis function call …
+    	System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+        
+    	System.out.println("football table");    	
 
-        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+    	path = new File("").getAbsolutePath().concat("//src//main//resources//de//exxcellent//challenge//football.csv");
+    	
+    	table = CSVReader.readTable(path);
+    	r = TableAnalysis.determineSolution(table, "Goals", "Goals Allowed");
+        
+        String teamWithSmallesGoalSpread = r.getName(); // Your goal analysis function call …
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallesGoalSpread);
-        */   
         
     }
 }

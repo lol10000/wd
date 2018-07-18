@@ -18,7 +18,7 @@ public class CSVReader implements TableReader {
     	try {
 			in = new FileReader(path);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
     	
@@ -27,7 +27,7 @@ public class CSVReader implements TableReader {
     	try {
 			records = CSVFormat.EXCEL.parse(in);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		

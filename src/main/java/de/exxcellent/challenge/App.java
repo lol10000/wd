@@ -24,7 +24,7 @@ public final class App {
     	String[][] table = CSVReader.readTable(path);
     	Result r = TableAnalysis.determineSolution(table, "MxT", "MnT");
 
-    	String dayWithSmallestTempSpread = r.getName();     // Your day analysis function call …
+    	String dayWithSmallestTempSpread = r.getName();
     	System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
         
     	System.out.println("football table");    	
@@ -34,7 +34,7 @@ public final class App {
     	table = CSVReader.readTable(path);
     	r = TableAnalysis.determineSolution(table, "Goals", "Goals Allowed");
         
-        String teamWithSmallesGoalSpread = r.getName(); // Your goal analysis function call …
+        String teamWithSmallesGoalSpread = r.getName();
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallesGoalSpread);
         
     }

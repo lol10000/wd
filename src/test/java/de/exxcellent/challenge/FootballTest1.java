@@ -31,7 +31,7 @@ public class FootballTest1 {
     @Test
     public void aPointlessTest() {
     	
-        Assert.assertNotEquals("Aniston_United", r.getName());
+        Assert.assertNotEquals("Aston_United", r.getName());
     }
 
 }

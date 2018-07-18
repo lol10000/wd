@@ -4,8 +4,7 @@ public interface TableReader {
 	
 	public static String[][] readTable(String path) {
 		
-		return null;
-		
+		return null;	
 	} 
 	
 }
